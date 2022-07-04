@@ -1,9 +1,17 @@
 package main
 
 import (
+	"os"
+
 	router "github.com/victormanduca/personal-finances/src/routes"
 )
 
 func main() {
-	router.Router().Run("localhost:8000")
+	port := os.Getenv("PORT")
+
+	if port == "" {
+		port = "8000"
+	}
+
+	router.Router().Run(":" + port)
 }
